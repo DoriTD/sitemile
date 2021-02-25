@@ -1,0 +1,30 @@
+//touch: include mixin mobile and tablet
+@mixin touch {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 760px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 761px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) and (max-width: 1240px) {
+    @content;
+  }
+}
+
+@mixin tv {
+  @media (min-width: 1241px) {
+    @content;
+  }
+}

@@ -1,0 +1,454 @@
+@import "fonts";
+@import "variables";
+
+body {
+  font-family: "Averta", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+  &.menu-open {
+    .menu-wrapper {
+      display: block;
+    }
+  }
+  &.menu-show {
+    main {
+      transform: perspective(1000px) translateX(40px) rotateY(20deg);
+    }
+
+    .menu-wrapper {
+      opacity: 1;
+      .menu {
+        right: 0px;
+      }
+    }
+  }
+
+  .menu-wrapper {
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
+    .menu {
+      position: fixed;
+      top: 0px;
+      right: -250px;
+      width: 200px;
+      height: 100vh;
+      background-color: #f7f7f7;
+      transition: all 0.5s;
+      ul {
+        padding: 0;
+        margin: 0;
+        margin-top: 50px;
+        list-style: none;
+        li {
+          a {
+            width: 100%;
+            padding: 20px 0;
+            display: inline-block;
+            color: black;
+            text-decoration: none;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  .m-show {
+    display: none;
+    @include mobile {
+      display: block;
+    }
+  }
+  .m-hide {
+    @include mobile {
+      display: none;
+    }
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 75px;
+    width: 100%;
+    padding: 0 15px;
+    border-bottom: 1px solid #e7e7e7;
+    z-index: 999;
+    background-color: white;
+
+    nav {
+      margin-right: 25px;
+      a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          color: red;
+        }
+      }
+
+      ul {
+        padding-right: 45px;
+        @include touch {
+          display: none;
+        }
+        li {
+          display: inline-block;
+          padding: 15px;
+          list-style-type: none;
+        }
+      }
+
+      .burger-menu {
+        position: absolute;
+        top: 0px;
+        right: 25px;
+        padding: 30px;
+        cursor: pointer;
+        &:hover {
+          img {
+            display: none;
+            &.hover {
+              display: inline-block;
+            }
+          }
+        }
+
+        img {
+          width: 15px;
+          height: 15px;
+          &.hover {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    transition: all 0.5s;
+    transform-style: preserve-3d;
+    transform: perspective(0px) translateX(0px) rotateY(0deg);
+    .hero-wrapper {
+      .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1160px;
+        margin: 0 auto;
+        margin-top: 100px;
+        @include touch {
+          margin-top: 40px;
+        }
+        .hero-motto {
+          position: relative;
+          width: 55%;
+          @include desktop {
+            margin-left: 30px;
+          }
+
+          @include touch {
+            width: calc(100% - 60px);
+            margin-bottom: 40px;
+          }
+          h1 {
+            font-size: 40px;
+            font-family: "Averta Bold1", sans-serif;
+            letter-spacing: 1.5px;
+            @include mobile {
+              font-size: 30px;
+            }
+          }
+          .inputs {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            border: 1px solid #e7e7e7;
+            border-radius: 5px;
+            @include mobile {
+              flex-direction: column;
+              border: none;
+            }
+            .each-input {
+              display: inline-block;
+              position: relative;
+              width: 50%;
+
+              &::before {
+                content: "";
+                position: absolute;
+                top: 7px;
+                left: 5px;
+                padding: 10px;
+                background: url("/images/search.svg");
+              }
+              &:last-of-type {
+                &::before {
+                  background: url("/images/pin.svg");
+                }
+              }
+              @include mobile {
+                width: 100%;
+                margin-top: 20px;
+                &::before {
+                  top: 15px;
+                  left: 10px;
+                }
+              }
+
+              input {
+                box-sizing: border-box;
+                width: 100%;
+                padding: 10px;
+                padding-left: 40px;
+                border: none;
+                @include mobile {
+                  border: 1px solid #e7e7e7;
+                  border-radius: 5px;
+                  height: 50px;
+                }
+                &::placeholder {
+                  font-family: "Averta", sans-serif;
+                  font-size: 16px;
+                  color: #d4c8c8;
+                }
+                &:focus {
+                  outline: none;
+                }
+                &:first-of-type {
+                  border-right: 1px solid #e7e7e7;
+                }
+              }
+              .btn {
+                position: absolute;
+                top: -6px;
+                right: -6px;
+                padding: 12.5px;
+                background: rgb(243, 27, 27);
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                color: white;
+                cursor: pointer;
+                @include mobile {
+                  border-radius: 5px;
+                  position: relative;
+                  top: 0px;
+                  right: 0px;
+                  margin-top: 20px;
+                  text-align: center;
+                }
+                &:hover {
+                  background: rgb(194, 15, 15);
+                }
+              }
+            }
+          }
+          .media {
+            margin-top: 33px;
+            a {
+              text-decoration: none;
+              color: black;
+              padding-left: 25px;
+              &::before {
+                content: "";
+                position: absolute;
+                bottom: 3px;
+                left: 0px;
+                padding: 8px;
+                background: url("/images/play-button.svg");
+              }
+            }
+          }
+        }
+        .hero-image {
+          width: 528px;
+          height: 413px;
+          background-image: url("../images/hero.jpg");
+          @include desktop {
+            height: 313px;
+            background-size: cover;
+          }
+          @include touch {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .marketplace-wrapper {
+      border-top: 3px solid #f7f7f7;
+      .marketplace {
+        max-width: 1160px;
+        padding: 30px 0;
+        margin: 0 auto;
+        @include desktop {
+          width: calc(100% - 60px);
+        }
+        @include touch {
+          width: calc(100% - 60px);
+        }
+        h2 {
+          font-size: 32px;
+          letter-spacing: 1.5px;
+        }
+        .cards {
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          align-items: center;
+          @include desktop {
+            justify-content: center;
+          }
+          @include touch {
+            justify-content: center;
+          }
+          .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+            border: 1px solid #e7e7e7;
+            margin-bottom: 40px;
+            margin-right: 40px;
+            box-shadow: 5px 5px 10px 1px #e8e5e8;
+            text-decoration: none;
+            color: black;
+            transition: transform 0.2s linear;
+            &:hover {
+              transform: scale(1.2);
+            }
+            @media (max-width: 400px) {
+              margin: 0px;
+              margin-bottom: 20px;
+            }
+            img {
+              width: 40px;
+              height: 40px;
+              margin-top: 35px;
+            }
+            p {
+              text-align: center;
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .services-wrapper {
+      background-color: #f7f7f7;
+      .services {
+        max-width: 1160px;
+        padding: 30px 0;
+        margin: 0 auto;
+        @include desktop {
+          width: calc(100% - 60px);
+        }
+        @include touch {
+          width: calc(100% - 60px);
+        }
+        h2 {
+          font-size: 32px;
+          letter-spacing: 1.5px;
+        }
+        .serv-cards {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          @include desktop {
+            justify-content: center;
+          }
+          @include touch {
+            justify-content: center;
+          }
+          .serv-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 250px;
+            height: 200px;
+            margin-bottom: 30px;
+            margin-right: 40px;
+            box-shadow: 5px 5px 10px 1px #e8e5e8;
+            text-decoration: none;
+            color: black;
+            transition: transform 0.2s linear;
+            &:hover {
+              transform: scale(1.2);
+            }
+            @include mobile {
+              margin: 20px;
+            }
+            @media (max-width: 400px) {
+              margin: 0px;
+              margin-bottom: 20px;
+            }
+            img {
+              width: 100%;
+              height: 150px;
+            }
+          }
+        }
+      }
+    }
+
+    .client {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1160px;
+      padding: 70px 0;
+      margin: 0 auto;
+      @include desktop {
+        width: calc(100% - 60px);
+      }
+      @include touch {
+        width: calc(100% - 60px);
+      }
+      @include mobile {
+        flex-direction: column;
+      }
+      h2 {
+        font-size: 32px;
+        letter-spacing: 1.5px;
+        margin: 0;
+      }
+      p {
+        color: #c5c4c4;
+        margin: 0;
+        margin-right: 20px;
+      }
+      .button {
+        width: 230px;
+        height: 30px;
+        padding: 10px 0px;
+        border-radius: 25px;
+        background: rgb(243, 27, 27);
+        color: white;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        &:hover {
+          background: rgb(194, 15, 15);
+        }
+        @include mobile {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
